@@ -32,6 +32,25 @@ class ::OmniAuth::Strategies::Oauth2Basic < ::OmniAuth::Strategies::OAuth2
       result
     end
   end
+ # customization
+ def authorize_params
+  super.tap do |params|
+    params[:appid] = options.client_id
+    params[:scope] = 'snsapi_login'
+    params.delete('client_id')
+
+  end
+end
+def token_params
+  super.tap do |params|
+    params[:appid] = options.client_id
+    params[:secret] = options.client_secret
+    params[:parse] = :json
+    params.delete('client_id')
+    params.delete('client_secret')
+  end
+end
+  
 
   def callback_url
     Discourse.base_url_no_prefix + script_name + callback_path
@@ -258,6 +277,8 @@ class ::OAuth2BasicAuthenticator < Auth::ManagedAuthenticator
   end
 
   def primary_email_verified?(auth)
+    log("primary_email_verified: \n\ncreds: #{auth['info']['email_verified']}")
+
     return true if SiteSetting.oauth2_email_verified
     verified = auth["info"]["email_verified"]
     verified = true if verified == "true"
