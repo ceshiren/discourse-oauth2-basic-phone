@@ -116,7 +116,8 @@ class ::OAuth2BasicAuthenticator < Auth::ManagedAuthenticator
                           opts[:client_secret] = SiteSetting.oauth2_client_secret
                           opts[:provider_ignores_state] = SiteSetting.oauth2_disable_csrf
                           opts[:client_options] = {
-                            authorize_url: SiteSetting.oauth2_authorize_url,
+                            # authorize_url: SiteSetting.oauth2_authorize_url,
+                            authorize_url: @is_phone ? "https://open.weixin.qq.com/connect/oauth2/authorize" : "https://open.weixin.qq.com/connect/qrconnect",
                             token_url: SiteSetting.oauth2_token_url,
                             token_method: SiteSetting.oauth2_token_url_method.downcase.to_sym,
                           }
