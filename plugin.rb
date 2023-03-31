@@ -32,6 +32,41 @@ class ::OmniAuth::Strategies::Oauth2Basic < ::OmniAuth::Strategies::OAuth2
       result
     end
   end
+  
+ 
+  # 管理用户返回数据
+  uid do
+    @uid ||= begin
+      access_token.params['unionid']
+    end
+  end
+
+  info do
+    {
+      :nickname => raw_info['nickname'],
+      :name => raw_info['nickname'],
+      :image => raw_info['headimgurl'],
+      :email => raw_info['email']
+    }
+  end
+
+  extra do
+    {
+      :raw_info => raw_info
+    }
+  end
+
+  def raw_info
+    @raw_info ||= begin
+      response = client.request(:get, "https://login.ceshiren.com/discourse/userinfo", :params => {
+        :openid => uid,
+        :access_token => access_token.token
+      }, :parse => :json)
+      response.parsed
+    end
+  end
+
+  
  # customization
  def authorize_params
   super.tap do |params|
