@@ -130,7 +130,7 @@ DiscoursePluginRegistry.define_filtered_register :oauth2_basic_additional_json_p
 
 class ::OAuth2BasicAuthenticator < Auth::ManagedAuthenticator
   def name
-    "oauth2_basic"
+    "oauth2_basic_phone"
   end
 
   def can_revoke?
@@ -142,7 +142,7 @@ class ::OAuth2BasicAuthenticator < Auth::ManagedAuthenticator
   end
 
   def register_middleware(omniauth)
-    omniauth.provider :oauth2_basic,
+    omniauth.provider :oauth2_basic_phone,
                       name: name,
                       setup:
                         lambda { |env|
