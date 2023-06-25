@@ -70,14 +70,14 @@ class ::OmniAuth::Strategies::Oauth2Basic < ::OmniAuth::Strategies::OAuth2
  # customization
  def authorize_params
   super.tap do |params|
-    params[:appid] = options.client_id
+    params[:appid] = "wx47f30bcd6424793f"
     params[:scope] = 'snsapi_login'
     params.delete('client_id')
 
   end
 end
 def token_params
-  super.tap do |params|
+  super.tap do |params|client_id
     params[:appid] = options.client_id
     params[:secret] = options.client_secret
     params[:parse] = :json
