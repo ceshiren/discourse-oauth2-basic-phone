@@ -70,19 +70,15 @@ class ::OmniAuth::Strategies::Oauth2BasicPhone < ::OmniAuth::Strategies::OAuth2
  # customization
  def authorize_params
   super.tap do |params|
-    params[:appid] = options.client_id
+    params[:appid] = SiteSetting.oauth2_phone_id
     params[:scope] = 'snsapi_userinfo'
-    params.delete('client_id')
-
   end
 end
 def token_params
-  super.tap do |params|client_id
-    params[:appid] = options.client_id
-    params[:secret] = options.client_secret
+  super.tap do |params|
+    params[:appid] = SiteSetting.oauth2_phone_id
+    params[:secret] = SiteSetting.oauth2_phone_secret
     params[:parse] = :json
-    params.delete('client_id')
-    params.delete('client_secret')
   end
 end
   
