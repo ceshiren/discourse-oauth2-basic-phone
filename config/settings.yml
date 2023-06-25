@@ -1,5 +1,5 @@
 login:
-  oauth2_enabled:
+  oauth2_phone_enabled:
     default: false
     client: true
   oauth2_client_id: ""
@@ -44,6 +44,9 @@ login:
   oauth2_scope: ""
   oauth2_button_title:
     default: "with OAuth2"
+    client: true
+  oauth2_phone_button_title:
+    default: "with OAuth2 Phone"
     client: true
   oauth2_allow_association_change:
     default: false

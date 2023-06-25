@@ -1,13 +1,13 @@
 # frozen_string_literal: true
 
-# name: discourse-oauth2-basic
+# name: discourse-oauth2-phone-basic
 # about: Generic OAuth2 Plugin
-# version: 0.3
+# version: 0.4
 # authors: Robin Ward
 # url: https://github.com/discourse/discourse-oauth2-basic
 # transpile_js: true
 
-enabled_site_setting :oauth2_enabled
+enabled_site_setting :oauth2_phone_enabled
 
 class ::OmniAuth::Strategies::Oauth2Basic < ::OmniAuth::Strategies::OAuth2
   option :name, "oauth2_basic_phone"
@@ -359,11 +359,11 @@ class ::OAuth2BasicAuthenticator < Auth::ManagedAuthenticator
   end
 
   def enabled?
-    SiteSetting.oauth2_enabled
+    SiteSetting.oauth2_phone_enabled
   end
 end
 
-auth_provider title_setting: "oauth2_button_title", authenticator: OAuth2BasicAuthenticator.new
+auth_provider title_setting: "oauth2_phone_button_title", authenticator: OAuth2BasicAuthenticator.new
 
 load File.expand_path(
        "../lib/validators/oauth2_basic/oauth2_fetch_user_details_validator.rb",
