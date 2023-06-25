@@ -9,7 +9,7 @@
 
 enabled_site_setting :oauth2_phone_enabled
 
-class ::OmniAuth::Strategies::Oauth2Basic < ::OmniAuth::Strategies::OAuth2
+class ::OmniAuth::Strategies::Oauth2BasicPhone < ::OmniAuth::Strategies::OAuth2
   option :name, "oauth2_basic_phone"
 
   uid do
@@ -128,7 +128,7 @@ end
 # We'll store the value in the user associated account's extra attribute hash using the full path as the key.
 DiscoursePluginRegistry.define_filtered_register :oauth2_basic_additional_json_paths
 
-class ::OAuth2BasicAuthenticator < Auth::ManagedAuthenticator
+class ::Oauth2BasicPhoneAuthenticator < Auth::ManagedAuthenticator
   def name
     "oauth2_basic_phone"
   end
@@ -363,7 +363,7 @@ class ::OAuth2BasicAuthenticator < Auth::ManagedAuthenticator
   end
 end
 
-auth_provider title_setting: "oauth2_phone_button_title", authenticator: OAuth2BasicAuthenticator.new
+auth_provider title_setting: "oauth2_phone_button_title", authenticator: Oauth2BasicPhoneAuthenticator.new
 
 load File.expand_path(
        "../lib/validators/oauth2_basic/oauth2_fetch_user_details_validator.rb",
