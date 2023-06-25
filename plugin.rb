@@ -70,8 +70,8 @@ class ::OmniAuth::Strategies::Oauth2BasicPhone < ::OmniAuth::Strategies::OAuth2
  # customization
  def authorize_params
   super.tap do |params|
-    params[:appid] = "wx47f30bcd6424793f"
-    params[:scope] = 'snsapi_login'
+    params[:appid] = options.client_id
+    params[:scope] = 'snsapi_userinfo'
     params.delete('client_id')
 
   end
