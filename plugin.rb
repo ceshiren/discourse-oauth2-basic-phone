@@ -147,8 +147,8 @@ class ::OAuth2BasicAuthenticator < Auth::ManagedAuthenticator
                       setup:
                         lambda { |env|
                           opts = env["omniauth.strategy"].options
-                          opts[:client_id] = SiteSetting.oauth2_client_id
-                          opts[:client_secret] = SiteSetting.oauth2_client_secret
+                          opts[:client_id] = SiteSetting.oauth2_phone_id
+                          opts[:client_secret] = SiteSetting.oauth2_phone_secret
                           opts[:provider_ignores_state] = SiteSetting.oauth2_disable_csrf
                           opts[:client_options] = {
                             # authorize_url: SiteSetting.oauth2_authorize_url,
@@ -204,7 +204,7 @@ class ::OAuth2BasicAuthenticator < Auth::ManagedAuthenticator
 
   def basic_auth_header
     "Basic " +
-      Base64.strict_encode64("#{SiteSetting.oauth2_client_id}:#{SiteSetting.oauth2_client_secret}")
+      Base64.strict_encode64("#{SiteSetting.oauth2_phone_id}:#{SiteSetting.oauth2_phone_secret}")
   end
 
   def walk_path(fragment, segments, seg_index = 0)

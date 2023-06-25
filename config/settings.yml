@@ -2,8 +2,8 @@ login:
   oauth2_phone_enabled:
     default: false
     client: true
-  oauth2_client_id: ""
-  oauth2_client_secret: ""
+  oauth2_phone_id: ""
+  oauth2_phone_secret: ""
   oauth2_authorize_url: ""
   oauth2_authorize_signup_url: ""
   oauth2_token_url: ""
